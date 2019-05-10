@@ -14,7 +14,7 @@ class App extends React.Component {
       {
         title: 'cook dinner',
         id: '2',
-        completed: false
+        completed: true
       },
       {
         title: 'mow lawn',

@@ -1,0 +1,11 @@
+#todoitem-container {
+    background-color: #f4f4f4;
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+.incomplete {
+    text-decoration: none;
+}
