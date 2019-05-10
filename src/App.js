@@ -14,7 +14,7 @@ class App extends React.Component {
       {
         title: 'cook dinner',
         id: '2',
-        completed: true
+        completed: false
       },
       {
         title: 'mow lawn',
@@ -24,8 +24,15 @@ class App extends React.Component {
     ]
   }
 
-  markComplete = (event) => {
-    console.log("bang")
+  markComplete = (id) => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if(todo.id === id) {
+          todo.completed = !todo.completed
+        }
+        return todo;
+      })
+    });
   }
 
   render() {
