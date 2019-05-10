@@ -23,7 +23,7 @@ class App extends React.Component {
       }
     ]
   }
-
+  //toggle completion of todo
   markComplete = (id) => {
     this.setState({
       todos: this.state.todos.map(todo => {
