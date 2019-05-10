@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Todos from './components/Todos';
+import Todos from './components/Todos/Todos';
 
 class App extends React.Component {
 
