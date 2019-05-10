@@ -2,6 +2,10 @@
     background-color: #f4f4f4;
 }
 
+#todoitem {
+    padding: 10px;border-bottom: 1px #ccc solid;
+}
+
 .completed {
     text-decoration: line-through;
 }
