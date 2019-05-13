@@ -6,28 +6,20 @@ import Header from './components/layout/Header/Header';
 import AddTodo from './components/AddTodo/AddTodo';
 import About from './components/pages/About';
 import uuid from 'uuid';
+import axios from 'axios';
 
 class App extends React.Component {
 
   state = {
-    todos: [
-      {
-        title: 'take out trash',
-        id: uuid.v4(),
-        completed: false
-      },
-      {
-        title: 'cook dinner',
-        id: uuid.v4(),
-        completed: false
-      },
-      {
-        title: 'mow lawn',
-        id: uuid.v4(),
-        completed: false
-      }
-    ]
+    todos: []
   }
+
+  //load sample todos from 'backend' ie the json placeholder backend
+  componentDidMount() {
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+      .then(res => this.setState({ todos: res.data }))
+  }
+
   //toggle completion of todo
   markComplete = (id) => {
     this.setState({
