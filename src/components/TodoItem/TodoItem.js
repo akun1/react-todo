@@ -14,6 +14,7 @@ export class TodoItem extends Component {
         <p id='todoitem' className = {this.props.todo.completed ? 'completed' : 'incomplete' }>
           <input type="checkbox" onChange={this.props.markComplete.bind(this, id)}/> {' '}
           { title }
+          <button onClick={this.props.deleteTodo.bind(this, id)} id='delete-btn'>X</button>
         </p>
       </div>
     )
