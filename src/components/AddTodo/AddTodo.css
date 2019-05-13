@@ -1,0 +1,14 @@
+#add-todo-container {
+    flex: 10;
+    padding: 5px;
+}
+
+#create-btn {
+    background-color: green;
+    color: white;
+    flex: 1;
+    float: right;
+    cursor: pointer;
+    padding: 5px;
+    border: none;
+}
