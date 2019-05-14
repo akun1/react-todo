@@ -78,3 +78,11 @@ store.dispatch({
     type: "SUBTRACT",
     payload: 5
 });
+store.dispatch({
+    type: "SET_NAME",
+    payload: "summer"
+});
+store.dispatch({
+    type: "SET_AGE",
+    payload: 69
+});
