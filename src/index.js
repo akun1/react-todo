@@ -11,6 +11,7 @@
 // serviceWorker.unregister();
 
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
 
 //create initial state object
 const initialState = {
@@ -70,7 +71,7 @@ const myLogger = (store) => (next) => (action) => {
 //but if reducer has defualt value, then create store doesnt
 //need initial state as param
 //const store = createStore(reducer,1);
-const store = createStore(combineReducers({mathReducer, userReducer}), {}, applyMiddleware(myLogger));
+const store = createStore(combineReducers({mathReducer, userReducer}), {}, applyMiddleware(myLogger, logger));
 //subscribe to store changes
 store.subscribe(() => {
     console.log("store updated", store.getState());
