@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './AddTodo.css';
+import PropTypes from 'prop-types';
 
 export class AddTodo extends Component {
 
@@ -35,3 +36,9 @@ export class AddTodo extends Component {
 }
 
 export default AddTodo;
+
+Todos.propTypes = {
+    createTodo: PropTypes.func.isRequired,
+    markComplete: PropTypes.func.isRequired,
+    deleteTodo: PropTypes.func.isRequired
+}

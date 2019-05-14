@@ -5,7 +5,6 @@ import Todos from './components/Todos/Todos';
 import Header from './components/layout/Header/Header';
 import AddTodo from './components/AddTodo/AddTodo';
 import About from './components/pages/About';
-import uuid from 'uuid';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -34,19 +33,22 @@ class App extends React.Component {
 
   //delete todo
   deleteTodo = (id) => {
-    this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] });
+    axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .then(res => {
+        this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] });
+      });
   } 
 
   //create todo
-
   createTodo = (title) => {
-    const newTodo = {
+    axios.post('https://jsonplaceholder.typicode.com/todos', {
       title,
-      id: uuid.v4(),
       completed: false
-    }
-    this.setState({
-      todos: [...this.state.todos, newTodo]
+    })
+    .then(res => {
+      this.setState({
+        todos: [...this.state.todos, res.data]
+      });
     });
   }
 
