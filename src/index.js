@@ -10,3 +10,28 @@
 // // Learn more about service workers: https://bit.ly/CRA-PWA
 // serviceWorker.unregister();
 
+import { createStore } from 'redux';
+
+//create reducer, takes state and action as params
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'ADD':
+        state = state + action.payload;
+            break;
+        case 'SUBTRACT':
+            break;
+    }
+    return state;
+};
+//create store, takes reducer and initial state as params
+const store = createStore(reducer,1);
+//subscribe to store changes
+store.subscribe(() => {
+    console.log("store updated", store.getState());
+});
+//perform a function on the store with dispatch.
+//Requires a type and payload
+store.dispatch({
+    type: "ADD",
+    payload: 10
+});
