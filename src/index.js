@@ -10,7 +10,7 @@
 // // Learn more about service workers: https://bit.ly/CRA-PWA
 // serviceWorker.unregister();
 
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 
 //create initial state object
 const initialState = {
@@ -59,11 +59,18 @@ const userReducer = (state = {
     }
     return state;
 };
+
+//create middleware for logging
+const myLogger = (store) => (next) => (action) => {
+    console.log("logged action", action);
+    next(action);
+}
+
 //create store, takes reducer and initial state as params
 //but if reducer has defualt value, then create store doesnt
 //need initial state as param
 //const store = createStore(reducer,1);
-const store = createStore(combineReducers({mathReducer, userReducer}));
+const store = createStore(combineReducers({mathReducer, userReducer}), {}, applyMiddleware(myLogger));
 //subscribe to store changes
 store.subscribe(() => {
     console.log("store updated", store.getState());
