@@ -12,20 +12,38 @@
 
 import { createStore } from 'redux';
 
+//create initial state object
+const initialState = {
+    result: 1,
+    lastValues: []
+}
 //create reducer, takes state and action as params
-const reducer = (state, action) => {
+//can give State a default value so that if not passed a new value
+//it will just use default value
+const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD':
-            state = state + action.payload;
+            state = {
+                ...state,
+                result: state.result + action.payload,
+                lastValues: [...state.lastValues, action.payload]
+            }
             break;
         case 'SUBTRACT':
-            state = state - action.payload;
+            state = {
+                ...state,
+                result: state.result - action.payload,
+                lastValues: [...state.lastValues, action.payload]
+            }
             break;
     }
     return state;
 };
 //create store, takes reducer and initial state as params
-const store = createStore(reducer,1);
+//but if reducer has defualt value, then create store doesnt
+//need initial state as param
+//const store = createStore(reducer,1);
+const store = createStore(reducer);
 //subscribe to store changes
 store.subscribe(() => {
     console.log("store updated", store.getState());
