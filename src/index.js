@@ -10,7 +10,7 @@
 // // Learn more about service workers: https://bit.ly/CRA-PWA
 // serviceWorker.unregister();
 
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
 //create initial state object
 const initialState = {
@@ -20,7 +20,7 @@ const initialState = {
 //create reducer, takes state and action as params
 //can give State a default value so that if not passed a new value
 //it will just use default value
-const reducer = (state = initialState, action) => {
+const mathReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD':
             state = {
@@ -39,11 +39,31 @@ const reducer = (state = initialState, action) => {
     }
     return state;
 };
+const userReducer = (state = {
+    name: "akash",
+    age: 22
+}, action) => {
+    switch (action.type) {
+        case 'SET_NAME':
+            state = {
+                ...state,
+                name: action.payload
+            }
+            break;
+        case 'SET_AGE':
+            state = {
+                ...state,
+                age: action.payload
+            }
+            break;
+    }
+    return state;
+};
 //create store, takes reducer and initial state as params
 //but if reducer has defualt value, then create store doesnt
 //need initial state as param
 //const store = createStore(reducer,1);
-const store = createStore(reducer);
+const store = createStore(combineReducers({mathReducer, userReducer}));
 //subscribe to store changes
 store.subscribe(() => {
     console.log("store updated", store.getState());
