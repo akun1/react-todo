@@ -19,6 +19,39 @@ const initialState = {
 //create reducer, takes state and action as params
 //can give State a default value so that if not passed a new value
 //it will just use default value
+const todosReducer = (state = {
+    todos: []
+}, action) => {
+    switch (action.type) {
+        case 'COMPLETE_TODO':
+            console.log("complete todo called")
+            state = {
+                ...state,
+                todos: state.todos.map(todo => {
+                    if(todo.id === action.payload) {
+                      todo.completed = !todo.completed
+                    }
+                    return todo;
+                  })
+            }
+            break;
+        case 'DELETE_TODO':
+            state = {
+                ...state,
+                result: state.result - action.payload,
+                lastValues: [...state.lastValues, action.payload]
+            }
+            break;
+        case 'CREATE_TODO':
+            state = {
+                ...state,
+                result: state.result - action.payload,
+                lastValues: [...state.lastValues, action.payload]
+            }
+        break;
+    }
+    return state;
+};
 const mathReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD':
@@ -69,7 +102,7 @@ const myLogger = (store) => (next) => (action) => {
 //but if reducer has defualt value, then create store doesnt
 //need initial state as param
 //const store = createStore(reducer,1);
-const store = createStore(combineReducers({mathReducer, userReducer}), {}, applyMiddleware(myLogger, logger));
+const store = createStore(combineReducers({mathReducer, userReducer, todosReducer}), {}, applyMiddleware(logger));
 //subscribe to store changes
 store.subscribe(() => {
     console.log("store updated", store.getState());

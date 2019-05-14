@@ -80,10 +80,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     setName: (name) => {
-      state.store.dispatch({
+      dispatch({
         type: "SET_NAME",
         payload: name
       });
