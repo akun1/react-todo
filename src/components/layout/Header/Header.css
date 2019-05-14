@@ -1,12 +1,12 @@
 #header-container {
-    background-color: darkgray;
-    color: white;
+    background-color: clear;
+    color: black;
     text-align: center;
     padding: 10px;
 }
 
 .header-link {
     text-decoration: none;
-    color: white;
+    color: black;
     cursor: pointer;
 }

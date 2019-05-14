@@ -27,7 +27,7 @@ export class AddTodo extends Component {
   render() {
     return (
         <form onSubmit={this.onSubmit} id="add-todo-container">
-            <input name='title' type='text' title='Add Todo' placeholder='Add a Todo!' value={this.state.title} onChange={this.onChange}/>
+            <input id='todo-text-area' name='title' type='text' title='Add Todo' placeholder='Add a Todo!' value={this.state.title} onChange={this.onChange}/>
             <input type='submit' value='Submit' id='create-btn' />
         </form>
     )
