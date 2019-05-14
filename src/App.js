@@ -6,6 +6,7 @@ import Header from './components/layout/Header/Header';
 import AddTodo from './components/AddTodo/AddTodo';
 import About from './components/pages/About';
 import axios from 'axios';
+import { connect } from 'react-redux'
 
 class App extends React.Component {
 
@@ -58,6 +59,7 @@ class App extends React.Component {
         <div className="App">
           <div className="app-container">
             <Header />
+            <h1>hello {this.props.user.name}</h1>
             <Route exact path='/' render={props => (
               <React.Fragment>
                 <AddTodo createTodo={this.createTodo}/>
@@ -72,4 +74,21 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userReducer
+  };
+};
+
+const mapDispatchToProps = (state) => {
+  return {
+    setName: (name) => {
+      state.store.dispatch({
+        type: "SET_NAME",
+        payload: name
+      });
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
